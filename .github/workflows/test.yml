@@ -1,0 +1,33 @@
+
+on:
+  push:
+    branches:
+      - main
+  pull_request: ~
+
+name: Test
+jobs:
+  test:
+    name: tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Install Go
+        uses: actions/setup-go@v5
+        with:
+          go-version-file: './go.mod'
+          cache-dependency-path: "**/go.sum"
+      - name: Get Dependencies
+        run: go get
+
+      - name: Run Unit Tests
+        run: go test ./... -v -coverprofile=coverage.out
+
+      - name: Run GoReleaser
+        uses: goreleaser/goreleaser-action@v6
+        with:
+          version: '~> v2'
+          args: build --snapshot --clean
