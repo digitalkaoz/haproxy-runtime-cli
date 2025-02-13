@@ -9,6 +9,10 @@ you get used to it, you'll love the simplicity.
 
 What is the Runtime-API? Read [here](https://www.haproxy.com/documentation/haproxy-runtime-api/)
 
+![status.png](examples/status.png)
+![list.png](examples/list.png)
+![execute.png](examples/execute.png)
+
 ## Usage
 
 Download your binary from [here](https://github.com/digitalkaoz/haproxy-runtime-cli/releases)
